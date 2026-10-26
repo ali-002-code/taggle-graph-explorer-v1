@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taggle Graph Explorer</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <aside id="sidebar">
+    <div id="brand">
+      <h1>Taggle Graph Explorer</h1>
+      <div class="sub">Restaurant co-review network &middot; local dev build</div>
+    </div>
+
+    <div id="searchBox">
+      <input id="searchInput" type="text" placeholder="Search a restaurant (e.g. OITA Soho)" autocomplete="off">
+      <div id="searchResults" class="panel-list hidden"></div>
+    </div>
+
+    <div id="quickActions">
+      <button class="action-btn" data-action="densest">Densest restaurants</button>
+      <button class="action-btn" data-action="bridges">Bridge restaurants</button>
+      <button class="action-btn" data-action="communities">Communities</button>
+      <button class="action-btn" id="resetBtn" data-action="reset">Reset graph</button>
+    </div>
+
+    <div id="thresholdBox" class="hidden">
+      <div class="section-label">Connection threshold</div>
+      <div id="thresholdButtons">
+        <button class="threshold-btn" data-threshold="1">All (&ge;1)</button>
+        <button class="threshold-btn active" data-threshold="2">Strong (&ge;2)</button>
+        <button class="threshold-btn" data-threshold="3">&ge;3</button>
+        <button class="threshold-btn" data-threshold="5">&ge;5</button>
+      </div>
+    </div>
+
+    <div id="graphControls" class="hidden">
+      <button id="expandBtn">Expand neighbours</button>
+      <button id="backBtn">Back</button>
+    </div>
+
+    <div id="sidebarList" class="panel-list"></div>
+  </aside>
+
+  <main id="canvasWrap">
+    <div id="homeScreen">
+      <h2>Explore the Taggle restaurant network</h2>
+      <p class="muted">Search for a restaurant, or start from one of the structural views on the left.</p>
+      <div id="homeTeaserCard">
+        <div id="homeTeaser"></div>
+        <div id="homeTeaserCaption">A live sample of the most interconnected restaurants &mdash; click any node to explore</div>
+      </div>
+    </div>
+    <div id="cy"></div>
+    <div id="toast" class="hidden"></div>
+  </main>
+
+  <aside id="detailPanel">
+    <div id="detailEmpty" class="muted">Select a restaurant or a connection to see details.</div>
+    <div id="detailContent" class="hidden"></div>
+  </aside>
+
+  <footer id="graphSummaryBar">Loading graph summary&hellip;</footer>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
