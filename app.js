@@ -39,7 +39,7 @@ const state = {
 // ---------------------------------------------------------------------
 
 async function fetchJSON(name) {
-  const res = await fetch(DATA_BASE + name);
+  const res = await fetch(DATA_BASE + name, { cache: "no-store" });
   if (!res.ok) throw new Error(`failed to load ${name}: ${res.status}`);
   return res.json();
 }
